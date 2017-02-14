@@ -70,8 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\EmpleadoBLL.cs" />
+    <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\ParcialDB.cs" />
+    <Compile Include="DAL\Repositorio.cs" />
     <Compile Include="Entidades\Empleados.cs" />
     <Compile Include="UI\Consultas\ConsultarEmpleados.cs">
       <SubType>Form</SubType>

@@ -77,6 +77,7 @@
             this.DataGridView.Name = "DataGridView";
             this.DataGridView.Size = new System.Drawing.Size(440, 209);
             this.DataGridView.TabIndex = 3;
+            this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             // 
             // FiltrarCheckBox
             // 

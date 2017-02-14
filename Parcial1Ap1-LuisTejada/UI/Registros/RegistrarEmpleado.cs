@@ -35,7 +35,12 @@ namespace Parcial1Ap1_LuisTejada.UI.Registros
             if (Utils.NoWhiteNoSpace(NombreTextBox.Text) && Utils.NoWhiteNoSpace(SueldoTextBox.Text))
             {
                 int id = 0;
-                id = BLL.EmpleadoBLL.Guardar(new Empleados(Utils.NoWhiteNoSpace(IdTextBox.Text) == false ? 0 : int.Parse(IdTextBox.Text), NombreTextBox.Text, dateTimePicker.Value.Date, int.Parse(SueldoTextBox.Text)));
+                Empleados empleado;
+                using (var context = new DAL.Repositorio<Empleados>())
+                {
+                    empleado = context.Guardar(new Empleados(Utils.NoWhiteNoSpace(IdTextBox.Text) == false ? 0 : int.Parse(IdTextBox.Text), NombreTextBox.Text, dateTimePicker.Value.Date, int.Parse(SueldoTextBox.Text)));
+                    id = empleado.EmpleadoId;
+                }
                 if(id != 0)
                 {
                     IdTextBox.Text = id.ToString();          
@@ -72,15 +77,18 @@ namespace Parcial1Ap1_LuisTejada.UI.Registros
         {
             if(Utils.NoWhiteNoSpace(IdTextBox.Text))
             {
-                if(BLL.EmpleadoBLL.Eliminar(int.Parse(IdTextBox.Text)))
+                int id = int.Parse(IdTextBox.Text);
+                using (var context = new DAL.Repositorio<Empleados>())
                 {
-                    Limpiar();
-                    MessageBox.Show("Este empleado eliminado!");
-                }
-                else
-                {
-
-                    MessageBox.Show("No se puedo eliminar!");
+                    if (context.Eliminar(context.Buscar(x => x.EmpleadoId == id)))
+                    {
+                        Limpiar();
+                        MessageBox.Show("Este empleado eliminado!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se puedo eliminar!");
+                    }
                 }
             }
             else
@@ -93,7 +101,13 @@ namespace Parcial1Ap1_LuisTejada.UI.Registros
         {
             if(Utils.NoWhiteNoSpace(IdTextBox.Text))
             {
-                Empleados empleado = BLL.EmpleadoBLL.Buscar(int.Parse(IdTextBox.Text));
+                Empleados empleado;
+                int id = int.Parse(IdTextBox.Text);
+
+                using (var context = new DAL.Repositorio<Empleados>())
+                {
+                    empleado = context.Buscar(x => x.EmpleadoId == id);
+                }
 
                 if(empleado != null)
                 {
