@@ -75,7 +75,7 @@
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView.Location = new System.Drawing.Point(50, 113);
             this.DataGridView.Name = "DataGridView";
-            this.DataGridView.Size = new System.Drawing.Size(486, 209);
+            this.DataGridView.Size = new System.Drawing.Size(440, 209);
             this.DataGridView.TabIndex = 3;
             // 
             // FiltrarCheckBox

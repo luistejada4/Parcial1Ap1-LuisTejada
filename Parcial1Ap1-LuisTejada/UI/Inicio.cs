@@ -26,5 +26,10 @@ namespace Parcial1Ap1_LuisTejada
         {
             new UI.Consultas.ConsultarEmpleados().Show();
         }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

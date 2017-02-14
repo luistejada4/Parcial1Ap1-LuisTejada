@@ -36,7 +36,16 @@ namespace Parcial1Ap1_LuisTejada.UI.Registros
             {
                 int id = 0;
                 id = BLL.EmpleadoBLL.Guardar(new Empleados(Utils.NoWhiteNoSpace(IdTextBox.Text) == false ? 0 : int.Parse(IdTextBox.Text), NombreTextBox.Text, dateTimePicker.Value.Date, int.Parse(SueldoTextBox.Text)));
-                IdTextBox.Text = id.ToString();
+                if(id != 0)
+                {
+                    IdTextBox.Text = id.ToString();          
+                    MessageBox.Show("Empleado guardado/modificado!");
+                    ErrorProvider.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Empleado no se puedo guardar!");
+                }                         
             }
             else
             {
@@ -66,11 +75,17 @@ namespace Parcial1Ap1_LuisTejada.UI.Registros
                 if(BLL.EmpleadoBLL.Eliminar(int.Parse(IdTextBox.Text)))
                 {
                     Limpiar();
+                    MessageBox.Show("Este empleado eliminado!");
                 }
                 else
                 {
+
                     MessageBox.Show("No se puedo eliminar!");
                 }
+            }
+            else
+            {
+                ErrorProvider.SetError(IdTextBox, "Id vacio!");
             }
         }
 
@@ -85,6 +100,7 @@ namespace Parcial1Ap1_LuisTejada.UI.Registros
                     NombreTextBox.Text = empleado.Nombres;
                     dateTimePicker.Value = empleado.FechaNacimientos;
                     SueldoTextBox.Text = empleado.Sueldos.ToString();
+                    ErrorProvider.Clear();
                 }
                 else
                 {
@@ -93,7 +109,7 @@ namespace Parcial1Ap1_LuisTejada.UI.Registros
             }
             else
             {
-                ErrorProvider.SetError(IdTextBox, "ID Vacio");
+                ErrorProvider.SetError(IdTextBox, "Id vacio!");
             }
         }
     }

@@ -24,7 +24,11 @@ namespace Parcial1Ap1_LuisTejada.UI.Consultas
             {
                 if (FechaCheckBox.Checked == true && NombreCheckBox.Checked == true)
                 {
-                    if (Utils.NoWhiteNoSpace(SearchTextBox.Text)) DataGridView.DataSource = BLL.EmpleadoBLL.GetListFechaAndNombre(DesdeDateTimePicker.Value.Date, HastaDateTimePicker.Value.Date, SearchTextBox.Text);
+                    if (Utils.NoWhiteNoSpace(SearchTextBox.Text))
+                    {
+                        DataGridView.DataSource = BLL.EmpleadoBLL.GetListFechaAndNombre(DesdeDateTimePicker.Value.Date, HastaDateTimePicker.Value.Date, SearchTextBox.Text);
+                        ErrorProvider.Clear();
+                    }
                     else ErrorProvider.SetError(SearchTextBox, "No puede estar vacio!");
                 }
                 else
@@ -35,7 +39,11 @@ namespace Parcial1Ap1_LuisTejada.UI.Consultas
                     }
                     else if(NombreCheckBox.Checked == true)
                     {
-                        if(Utils.NoWhiteNoSpace(SearchTextBox.Text)) DataGridView.DataSource = BLL.EmpleadoBLL.GetListNombre(SearchTextBox.Text);
+                        if (Utils.NoWhiteNoSpace(SearchTextBox.Text))
+                        {
+                            DataGridView.DataSource = BLL.EmpleadoBLL.GetListNombre(SearchTextBox.Text);
+                            ErrorProvider.Clear();
+                        }
                         else ErrorProvider.SetError(SearchTextBox, "No puede estar vacio!");
                     }
                 }
